@@ -72,6 +72,7 @@ void desenharFila(s_no *topo) {
         char valor[10];
         //escrevendo o valor dentro do retangulo
         sprintf(valor, "%d", topo->num);
+        valor[4] = '\0';
         gfx_text(x + 20, y + 8, valor);
 
 
@@ -115,6 +116,7 @@ void desenharPilha(s_no *topo) {
         char valor[10];
         //escrevendo o valor dentro do retangulo
         sprintf(valor, "%d", topo->num);
+        valor[4] = '\0';
         gfx_text(x + 20, y + 8, valor);
 
         if (topo->prox != NULL) {
@@ -160,6 +162,7 @@ void desenharListaSimpOrdOrdCirc(s_no *ptlista) {
     int firstNodeY = startY; 
     int arrowEndX_2 = firstNodeX - spacing;
     int arrowEndY_2 = firstNodeY + verticalLine;
+
     
     do {
         nodeWidth = 50;
@@ -169,6 +172,7 @@ void desenharListaSimpOrdOrdCirc(s_no *ptlista) {
         gfx_rectangle(x, y, x + nodeWidth, y + nodeHeight);
         char valor[10];
         sprintf(valor, "%d", ptr->num);
+        valor[4] = '\0';
         gfx_text(x + 20, y + 8, valor);
         arrowStartX = x + 50; 
         arrowStartY = y + 15; 
@@ -219,16 +223,28 @@ void desenharListaSimpOrdOrdCirc(s_no *ptlista) {
 void desenharListaSimpOrd(s_no *ptlista) {
     gfx_clear();
     gfx_paint();
+
     int x = 50, y = 100; 
     int nodeWidth = 50, nodeHeight = 30; 
     int spacing = 20; 
     int arrowStartX = x + nodeWidth;
     int arrowStartY = y + nodeHeight / 2;
     int arrowEndX = arrowStartX + spacing;
+    
+    //primeira seta para o lado direito
+    gfx_line(arrowStartX, arrowStartY, arrowEndX, arrowStartY);
+    gfx_line(arrowEndX, arrowStartY, arrowEndX - 5, arrowStartY - 5);
+    gfx_line(arrowEndX, arrowStartY, arrowEndX - 5, arrowStartY + 5);
+
+
+    x += nodeWidth + spacing;
+
+    
     while (ptlista != NULL) {
         gfx_rectangle(x, y, x + nodeWidth, y + nodeHeight);
         char valor[10];
         sprintf(valor, "%d", ptlista->num);
+        valor[4] = '\0';
         gfx_text(x + 20, y + 8, valor);
 
 
@@ -271,10 +287,19 @@ void desenharListaDuplaEnc(s_no_duplo *ptlista) {
     int arrowEndX = arrowStartX + spacing;
     int prevArrowEndX = x - spacing;
 
+    //primeira seta para o lado direito
+    gfx_line(arrowStartX, arrowStartY, arrowEndX, arrowStartY);
+    gfx_line(arrowEndX, arrowStartY, arrowEndX - 5, arrowStartY - 5);
+    gfx_line(arrowEndX, arrowStartY, arrowEndX - 5, arrowStartY + 5);
+
+
+    x += nodeWidth + spacing;
+
     //desenha o no cabeça
     gfx_rectangle(x, y, x + nodeWidth, y + nodeHeight);
     char valor[10];
     sprintf(valor, "%d", ptlista->num);
+    valor[4] = '\0';
     gfx_text(x + 20, y + 8, valor);
 
     //desenha a seta para frente após o no cabeça
