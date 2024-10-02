@@ -80,8 +80,6 @@ void insertionSort (int32_t *L, int n) {
 }
 
 
-
-
 void mergeSort(int32_t *L, int32_t *Tmp, int esq, int dir){
 
     if(esq < dir){
@@ -167,7 +165,39 @@ void lastElementQuickSort(int32_t *L, int ini, int fim){
             lastElementQuickSort(L, i + 1, fim);
         }
     }
-}   
+}
+
+void heapSort(int32_t *L, int n){
+    arranjar(L, n);
+    int m = n - 1;
+
+    while(m >= 0){
+        trocar(&L[0], &L[m]);
+        m = m - 1;
+        descer(L, 0, m);
+    }
+}
+
+
+void descer(int32_t *L, int i, int n){
+    int j = 2 * i;
+
+    if(j <= n){
+        if(j < n){
+            if(L[j+1] > L[j])
+                j = j + 1;
+        }
+        if(L[i] < L[j]){
+            trocar(&L[i], &L[j]);
+            descer(L, j, n);
+        }
+    }
+}
+
+void arranjar(int32_t *L, int n){
+    for(int i = n/2; i >= 0; i--)
+        descer(L, i, n-1);
+}
 
 
 
