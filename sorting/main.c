@@ -49,7 +49,6 @@ void originalBubbleSort (int32_t *L, int n) {
 }
 
 
-//reparar esse aqui
 void betterBubbleSort (int32_t *L, int n) {
     bool mudou = true; 
     int auxN = n - 1, guarda = n;
@@ -322,7 +321,7 @@ int main(int argc, char *argv[]){
         clock_t begin, end;
 
         FILE *inputFile = fopen(inArchName, "rb");
-
+        
         CheckFileStatus(inputFile);
 
         sizeOfArray = getArraySize(inputFile);
@@ -340,10 +339,10 @@ int main(int argc, char *argv[]){
 
         srand(time(NULL));
 
-        printf("SORTING_PROCESSING\n");
+        printf("SORTING_PROCESSING\n\n");
         switch(op){
             case 1:
-                printf("1.Bubble-sort original\n");
+                printf("\n\n1.Bubble-sort original\n\n");
 
                 begin = clock();
                 originalBubbleSort(array, sizeOfArray);
@@ -351,7 +350,7 @@ int main(int argc, char *argv[]){
 
                 break;
             case 2:
-                printf("2.Bubble-sort melhorado\n");
+                printf("\n\n2.Bubble-sort melhorado\n\n");
 
                 begin = clock();
                 betterBubbleSort(array, sizeOfArray);
@@ -359,7 +358,7 @@ int main(int argc, char *argv[]){
 
                 break;
             case 3:
-                printf("3.Insertion-sort\n");
+                printf("\n\n3.Insertion-sort\n\n");
 
                 begin = clock();
                 insertionSort(array, sizeOfArray);
@@ -367,7 +366,7 @@ int main(int argc, char *argv[]){
 
                 break;
             case 4:
-                printf("4.Mergesort\n");
+                printf("\n\n4.Mergesort\n\n");
 
                 begin = clock();
                 mergeSort(array, temp, 0, sizeOfArray-1);
@@ -375,7 +374,7 @@ int main(int argc, char *argv[]){
 
                 break;
             case 5:
-                printf("5.Quicksort com pivô sendo o último elemento\n");
+                printf("\n\n5.Quicksort com pivô sendo o último elemento\n\n");
 
                 begin = clock();
                 lastElementQuickSort(array, 0, sizeOfArray-1);
@@ -383,7 +382,7 @@ int main(int argc, char *argv[]){
 
                 break;
             case 6:
-                printf("6.Quicksort com pivô sendo um elemento aleatório\n");
+                printf("\n\n6.Quicksort com pivô sendo um elemento aleatório\n\n");
 
                 begin = clock();
                 randomElementQuickSort(array, 0, sizeOfArray-1);
@@ -391,7 +390,7 @@ int main(int argc, char *argv[]){
 
                 break;
             case 7:
-                printf("7.Quicksort com pivô sendo a mediana de três\n");
+                printf("\n\n7.Quicksort com pivô sendo a mediana de três\n\n");
 
                 begin = clock();
                 medianQuickSort(array, 0, sizeOfArray-1);
@@ -399,7 +398,7 @@ int main(int argc, char *argv[]){
 
                 break;
             case 8:
-                printf("8.Heapsort\n");
+                printf("\n\n8.Heapsort\n\n");
 
                 begin = clock();
                 heapSort(array, sizeOfArray);
@@ -423,7 +422,7 @@ int main(int argc, char *argv[]){
         timeSpent += (double)(end-begin) / CLOCKS_PER_SEC;
         
         printf("Array ordenado!\n");
-        printf("O tempo de execução do algoritmo [%hu] foi de %.3f segundos.\n", op, timeSpent);
+        printf("\n\nO tempo de execução do algoritmo [%hu] foi de %.3f segundos.\n\n", op, timeSpent);
     }
     else
         printf ("usage: ./<file name> <numero alg> <nome arq> <nome arq saida>\n");
